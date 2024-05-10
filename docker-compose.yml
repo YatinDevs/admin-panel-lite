@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  node_postgresdb:
+    container_name: node_postgresdb
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_DB=$POSTGRESDB_DATABASE
+      - POSTGRES_USER=$POSTGRESDB_USER
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+
+    volumes:
+      - type: volume
+        source: db
+        target: /var/lib/postgresql/data
+
+  app:
+    depends_on:
+      - node_postgresdb
+    build: ./admin-server
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    environment:
+      - DB_HOST=node_postgresdb
+      - DB_USER=$POSTGRESDB_USER
+      - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
+      - DB_NAME=$POSTGRESDB_DATABASE
+      - DB_PORT=$POSTGRESDB_DOCKER_PORT
+
+# define the volumes to be used by the services
+volumes:
+  db:

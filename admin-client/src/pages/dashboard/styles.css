@@ -1,0 +1,19 @@
+/* Custom table styles */
+.custom-table {
+  padding: 10px; /* Adjust the padding as needed */
+}
+
+/* Custom table header styles */
+.custom-table .ant-table-thead > tr > th {
+  /* Add custom styles for table header cells */
+  padding: 2px;
+}
+
+/* Custom table row styles */
+.custom-table .ant-table-tbody > tr > td {
+  /* Add custom styles for table body cells */
+  padding: 5px;
+}
+.custom-button {
+  padding: 2px 5px;
+}
