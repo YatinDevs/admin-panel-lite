@@ -1,6 +1,10 @@
 // Required modules
 const { Load, Space, Enquiry, User } = require("../models/server1");
 const { LoadS2, SpaceS2, EnquiryS2, UserS2 } = require("../models/server2");
+const digitalOceanSequelize = require("../../app/utils/digitalocean-sequelize");
+
+digitalOceanSequelize.options.dialectOptions.ssl = false;
+
 async function populateData() {
   try {
     // Fetch data from Digital Ocean database

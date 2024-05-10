@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const localSequelize = require("../../utils/local-sequelize");
-
 const Employee = localSequelize.define(
   "Employee",
   {

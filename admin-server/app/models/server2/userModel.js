@@ -5,7 +5,7 @@ const SpaceS2 = require("./spaceModel");
 const EnquiryS2 = require("./enquiryModel");
 
 const UserS2 = localSequelize.define(
-  "UserS2",
+  "Users",
   {
     user_id: {
       type: DataTypes.INTEGER,
@@ -26,10 +26,7 @@ const UserS2 = localSequelize.define(
     },
   },
   {
-    tableName: "UsersS2",
-    timestamps: true,
-    createdAt: "createdAt",
-    updatedAt: "updatedAt",
+    tableName: "Users",
   }
 );
 

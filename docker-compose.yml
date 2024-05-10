@@ -2,7 +2,6 @@ version: "3.8"
 
 services:
   node_postgresdb:
-    container_name: node_postgresdb
     image: postgres:latest
     restart: unless-stopped
     ports:
@@ -13,11 +12,8 @@ services:
       - POSTGRES_DB=$POSTGRESDB_DATABASE
       - POSTGRES_USER=$POSTGRESDB_USER
       - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
-
     volumes:
-      - type: volume
-        source: db
-        target: /var/lib/postgresql/data
+      - db:/var/lib/postgres
 
   app:
     depends_on:
@@ -34,6 +30,11 @@ services:
       - DB_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
       - DB_NAME=$POSTGRESDB_DATABASE
       - DB_PORT=$POSTGRESDB_DOCKER_PORT
+      - DO_DB_HOST=$DO_DB_HOST
+      - DO_DB_USER=$DO_DB_USER
+      - DO_DB_PASSWORD=$DO_DB_PASSWORD
+      - DO_DB_NAME=$DO_DB_NAME
+      - DO_DB_PORT=$DO_DB_PORT
 
 # define the volumes to be used by the services
 volumes:

@@ -3,7 +3,7 @@ const localSequelize = require("../../utils/local-sequelize");
 const UserS2 = require("./userModel");
 
 const LoadS2 = localSequelize.define(
-  "LoadS2",
+  "Loads",
   {
     load_id: {
       type: DataTypes.STRING,
@@ -68,10 +68,7 @@ const LoadS2 = localSequelize.define(
     },
   },
   {
-    tableName: "LoadsS2",
-    timestamps: true,
-    createdAt: "createdAt",
-    updatedAt: "updatedAt",
+    tableName: "Loads", // Specify the desired table name here
   }
 );
 
